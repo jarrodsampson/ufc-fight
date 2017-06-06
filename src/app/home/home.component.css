@@ -1,0 +1,32 @@
+.item {
+  margin:1em;
+}
+
+.banner {
+  width:100%;
+  height:400px;
+  background:url('../../assets/images/wall1.jpg') top center fixed;
+  background-size:cover;
+  position: relative;
+}
+
+.card .card-content {
+  min-height:290px;
+  max-height:290px;
+}
+
+.newsDate {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  width: 250px;
+  margin-left: -125px !important;
+  font-style: italic;
+}
+
+
+.moreButton {
+  font-size: 12pt;
+  color: orange;
+  cursor: pointer;
+}

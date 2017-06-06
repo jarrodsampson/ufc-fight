@@ -1,0 +1,351 @@
+<div class="col s12">
+  <div parallax [config]="{parallaxInitVal: -100, parallaxRatio: -11.3}" class="banner"></div>
+</div>
+
+
+<div class="" [ngBusy]="{busy: busy, message: 'Loading Content...', backdrop: false, delay: 0, minDuration: 500}"></div>
+
+<div class="topHeadlinesBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-left">Top Headlines</h1>
+    </div>
+
+  </div>
+
+  <div class="headlinesList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: false, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="usaToday"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let usa of usaToday; let i = index">
+
+        <div class="card hoverable">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate"><a href="{{usa.url}}" target="_blank">{{usa.title}}</a></h4>
+              <p>{{usa.description | truncate : 160 || "No Description"}}</p>
+              <p class="newsDate" *ngIf="usa.publishedAt">
+                {{usa.publishedAt | amTimeAgo}} <br /> {{usa.author || "No Author"}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+</div>
+
+
+
+<div class="sportsBg">
+
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-right">Sports</h1>
+    </div>
+
+  </div>
+
+  <div class="sportsList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: false, autoplay: true, loop:true, autoplayTimeout:4000, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="espn"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let e of espn; let i = index">
+
+        <div class="card hoverable">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate"><a href="{{e.url}}" target="_blank">{{e.title}}</a></h4>
+              <p>{{e.description | truncate : 160 || "No Description"}}</p>
+              <p class="newsDate" *ngIf="e.publishedAt">
+                {{e.publishedAt | amTimeAgo}} <br /> {{e.author || "No Author"}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+
+</div>
+
+
+<div class="businessBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-left">Business</h1>
+    </div>
+
+  </div>
+
+
+  <div class="businessList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: false, autoplay: true, autoplayTimeout:5000, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="businessInsider"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let business of businessInsider; let i = index">
+
+        <div class="card hoverable">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate"><a href="{{business.url}}" target="_blank">{{business.title}}</a></h4>
+              <p>{{business.description | truncate : 160 || "No Description"}}</p>
+              <p class="newsDate" *ngIf="business.publishedAt">
+                {{business.publishedAt | amTimeAgo}} <br /> {{business.author || "No Author"}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+
+
+</div>
+
+
+<div class="techBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-right">Technology</h1>
+    </div>
+
+  </div>
+
+  <div class="techList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: true, autoplay: true, autoplayTimeout:7000, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="techCrunch"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let tech of techCrunch; let i = index">
+
+        <div class="card hoverable">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate"><a href="{{tech.url}}" target="_blank">{{tech.title}}</a></h4>
+              <p>{{tech.description | truncate : 160 || "No Description"}}</p>
+              <p class="newsDate" *ngIf="tech.publishedAt">
+                {{tech.publishedAt | amTimeAgo}} <br /> {{tech.author || "No Author"}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+
+</div>
+
+<div class="sourcesBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-left">Top Sources <span class="moreButton" routerLink="/sources">More Sources</span></h1>
+    </div>
+
+  </div>
+
+  <div class="sourcesList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: false, autoplayTimeout:9000, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="sources"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let source of sources; let i = index">
+
+        <div class="card hoverable">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate"><a routerLink="/articles/{{source.id}}">{{source.name}}</a></h4>
+              <p>{{source.description | truncate : 160 || "No Description"}}</p>
+              <p class="newsDate">
+                {{source.category | ucwords }}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+
+</div>
+
+<div class="row loadMore" [hidden]="isLoading">
+  <div class="col s12 center-align">
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-yellow-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="" [hidden]="extraHidden">
+
+
+  <div class="entertainmentBg">
+    <div class="row">
+
+      <div class="col s12">
+        <h1 class="float-right">Entertainment</h1>
+      </div>
+    </div>
+
+    <div class="entertainmentList">
+      <owl-carousel
+        [options]="{items: 6, dots: true, navigation: false, autoplayTimeout:9000, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+        [items]="mashable"
+        [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div class="item center-align" *ngFor="let mash of mashable; let i = index">
+
+          <div class="card hoverable">
+            <div class="card-content">
+
+              <div class="center-align">
+                <h4 class="truncate"><a href="{{mash.url}}" target="_blank">{{mash.title}}</a></h4>
+                <p>{{mash.description | truncate : 160 || "No Description"}}</p>
+                <p class="newsDate" *ngIf="mash.publishedAt">
+                  {{mash.publishedAt | amTimeAgo}} <br /> {{mash.author || "No Author"}}
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </owl-carousel>
+    </div>
+  </div>
+
+  <div class="gamingBg">
+    <div class="row">
+
+      <div class="col s12">
+        <h1 class="float-left">Gaming</h1>
+      </div>
+    </div>
+
+    <div class="gamingList">
+        <owl-carousel
+          [options]="{items: 6, dots: true, navigation: false, autoplayTimeout:9000, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+          [items]="ign"
+          [carouselClasses]="['owl-theme', 'row', 'sliding']">
+          <div class="item center-align" *ngFor="let i of ign; let i = index">
+
+            <div class="card hoverable">
+              <div class="card-content">
+
+                <div class="center-align">
+                  <h4 class="truncate"><a href="{{i.url}}" target="_blank">{{i.title}}</a></h4>
+                  <p>{{i.description | truncate : 160 || "No Description"}}</p>
+                  <p class="newsDate" *ngIf="i.publishedAt">
+                    {{i.publishedAt | amTimeAgo}} <br /> {{i.author || "No Author"}}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </owl-carousel>
+    </div>
+  </div>
+
+
+  <div class="musicBg">
+    <div class="row">
+
+      <div class="col s12">
+        <h1 class="float-right">Music</h1>
+      </div>
+    </div>
+
+    <div class="musicList">
+      <owl-carousel
+        [options]="{items: 6, dots: true, navigation: false, autoplayTimeout:9000, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+        [items]="mtvNews"
+        [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div class="item center-align" *ngFor="let m of mtvNews; let i = index">
+
+          <div class="card hoverable">
+            <div class="card-content">
+
+              <div class="center-align">
+                <h4 class="truncate"><a href="{{m.url}}" target="_blank">{{m.title}}</a></h4>
+                <p>{{m.description | truncate : 160 || "No Description"}}</p>
+                <p class="newsDate" *ngIf="m.publishedAt">
+                  {{m.publishedAt | amTimeAgo}} <br /> {{m.author || "No Author"}}
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </owl-carousel>
+    </div>
+  </div>
+
+
+  <div class="scienceBg">
+    <div class="row">
+
+      <div class="col s12">
+        <h1 class="float-left">Science/ Nature</h1>
+      </div>
+    </div>
+
+    <div class="musicList">
+      <owl-carousel
+        [options]="{items: 6, dots: true, navigation: false, autoplayTimeout:9000, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+        [items]="nationalG"
+        [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div class="item center-align" *ngFor="let n of nationalG; let i = index">
+
+          <div class="card hoverable">
+            <div class="card-content">
+
+              <div class="center-align">
+                <h4 class="truncate"><a href="{{n.url}}" target="_blank">{{n.title}}</a></h4>
+                <p>{{n.description | truncate : 160 || "No Description"}}</p>
+                <p class="newsDate" *ngIf="n.publishedAt">
+                  {{n.publishedAt | amTimeAgo}} <br /> {{n.author || "No Author"}}
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </owl-carousel>
+    </div>
+  </div>
+
+</div>

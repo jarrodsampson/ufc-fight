@@ -1,0 +1,53 @@
+<div class="navbar-fixed">
+  <nav id="header">
+    <div class="nav-wrapper">
+      <mz-navbar [navbarClass]="'black'">
+        <a routerLink="/home" class="brand-logo topScroll"><img src="assets/images/favicon.png" /> <span class="title-text">UFC Champions</span></a>
+        <div class="collapser">
+          <a [id]="'btn-sidenav'" class="button-collapse"><i mz-icon-mdi [icon]="'menu'"></i></a>
+        </div>
+        <mz-navbar-item-container [align]="'right'" class="nav-wrapper black">
+          <mz-navbar-item><a routerLink="/news" routerLinkActive="active-link">News</a></mz-navbar-item>
+          <mz-navbar-item><a routerLink="/fighters/title-holders" routerLinkActive="active-link">Titles</a></mz-navbar-item>
+          <mz-navbar-item><a routerLink="/fighters" routerLinkActive="active-link">Fighters</a></mz-navbar-item>
+          <mz-navbar-item><a routerLink="/events" routerLinkActive="active-link">Events</a></mz-navbar-item>
+          <mz-navbar-item><a routerLink="/octagon/ladies" routerLinkActive="active-link">Ringside</a></mz-navbar-item>
+          <mz-navbar-item><a class="modal-trigger" (click)="aboutModal.open()"><i mz-icon-mdi [icon]="'information'"></i></a></mz-navbar-item>
+        </mz-navbar-item-container>
+      </mz-navbar>
+    </div>
+
+    <mz-sidenav
+      [id]="'sidenav'"
+      [closeOnClick]="'true'"
+      [collapseButtonId]="'btn-sidenav'">
+      <mz-sidenav-header>
+        <img src="assets/images/wall1.jpg" alt="SideImagine" />
+      </mz-sidenav-header>
+
+      <mz-sidenav-link><a routerLink="/home" routerLinkActive="active-link">Home</a></mz-sidenav-link>
+      <mz-sidenav-link><a routerLink="/sources" routerLinkActive="active-link">Sources</a></mz-sidenav-link>
+      <mz-sidenav-link><a class="modal-trigger" (click)="aboutModal.open()">About</a></mz-sidenav-link>
+      <mz-sidenav-link><a href="//newsapi.org/" target="_blank">API</a></mz-sidenav-link>
+
+    </mz-sidenav>
+
+  </nav>
+</div>
+
+
+<mz-modal #aboutModal [fixedFooter]="false">
+  <mz-modal-header>
+    <h4>News Bash</h4>
+  </mz-modal-header>
+  <mz-modal-content>
+    <p>A Mini Viewer of the GitHub Application for source code, organizations, repositories, and users.</p>
+    <p>Version 1 Made By Jarrod Sampson</p>
+  </mz-modal-content>
+  <mz-modal-footer>
+    <button mz-button [flat]="true" class="mod" mz-modal-close>Got It</button>
+  </mz-modal-footer>
+</mz-modal>
+
+
+<router-outlet></router-outlet>

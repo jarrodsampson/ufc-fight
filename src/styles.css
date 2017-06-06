@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* headroom css */
+
+.slide {
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out
+}
+.slide--reset {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0)
+}
+.slide--up {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%)
+}
+
+.topScroll {
+  cursor:pointer;
+}
+
+.collapser {
+  display: none;
+}
+
+#sidenav-overlay {
+  z-index: 996 !important;
+}
+
+.side-nav img {
+  max-width: 100%;
+  margin-bottom: -1.9em;
+}
+
+.side-nav {
+  z-index:999 !important;
+}
+
+nav ul a {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color:white;
+}
+
+.title-text, nav ul a, a {
+  transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+}
+
+.active-link {
+  color:red !important;
+}
+
+
+@media(max-width:992px) {
+  .collapser {
+    display: block;
+  }
+
+  .brand-logo {
+    margin-left: -100px;
+  }
+
+  .float-right, .float-left {
+    float: none;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .moreButton {
+    display: block;
+  }
+
+}
+
+
+@media(max-width:767px) {
+  .title-text {
+    display:none;
+  }
+
+  .brand-logo {
+    margin-left: 0;
+  }
+}
