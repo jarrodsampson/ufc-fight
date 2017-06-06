@@ -14,10 +14,21 @@ export class FighterDetailsComponent implements OnInit {
 
   fighterId: string = "";
   fighter = {
-    last_name: ""
+    last_name: "",
+    fights: [
+      {Event: "",
+      Opponent: "",
+      Result: ""}
+    ]
   };
+
   fighterNews: Array<string> = [];
   fighterMedia: Array<string> = [];
+  busy: Subscription;
+  newsLength: number = 10;
+  mediaLength: number = 10;
+  loadMoreMediaShown: boolean = true;
+  loadMoreNewsShown: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle( "Fighters - UFC Champions" );
@@ -40,7 +51,7 @@ export class FighterDetailsComponent implements OnInit {
     /*
      Get all news sources
      */
-    this._apiService.getFighterDetails(this.fighterId).subscribe(
+    this.busy = this._apiService.getFighterDetails(this.fighterId).subscribe(
       data => {
         this.fighter = data[0];
         this.fighterNews = data[1];
@@ -54,5 +65,24 @@ export class FighterDetailsComponent implements OnInit {
         console.log("Fighter Media data", this.fighterMedia);
       }
     );
+  }
+
+  goBack() {
+    window.history.back();
+  }
+
+  loadMoreMedia() {
+
+    this.mediaLength += 10;
+    if (this.mediaLength >= this.fighterMedia.length) {
+      this.loadMoreMediaShown = false;
+    }
+  }
+
+  loadMoreNews() {
+    this.newsLength += 10;
+    if (this.newsLength >= this.fighterNews.length) {
+      this.loadMoreNewsShown = false;
+    }
   }
 }

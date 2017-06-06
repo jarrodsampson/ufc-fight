@@ -13,6 +13,7 @@ import * as _ from 'underscore';
 export class TitleHolderListComponent implements OnInit {
 
   titleHoldersList: Array<string> = [];
+  busy: Subscription;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "Title Holders - UFC Champions" );
@@ -29,7 +30,7 @@ export class TitleHolderListComponent implements OnInit {
     /*
      Get all news sources
      */
-    this._apiService.getAllTitleHolders().subscribe(
+    this.busy = this._apiService.getAllTitleHolders().subscribe(
       data => {
         this.titleHoldersList = this.titleHoldersList.concat(data);
       },

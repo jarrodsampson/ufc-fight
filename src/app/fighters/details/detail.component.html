@@ -1,0 +1,230 @@
+<div class="row">
+
+  <div class="" [ngBusy]="{busy: busy, message: 'Loading Fighter Details...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12">
+    <button (click)="goBack()" class="waves-effect waves-light btn black">Go Back</button>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
+
+        <div class="">
+          <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
+          <p [innerHTML]="fighter.nickname"></p>
+          <p>{{fighter.weight_class}}</p>
+          <p *ngIf="fighter.fighter_status === 'Active'"><em>Active Fighter</em></p>
+          <p>{{fighter.city_residing}}, {{fighter.state_residing}}, {{fighter.country_residing}}</p>
+          <p>
+            <img src="{{fighter.left_full_body_image}}" />
+            <img src="{{fighter.right_full_body_image}}" />
+          </p>
+
+          <table class="responsive-table">
+            <thead>
+            <tr>
+              <th>Height</th>
+              <th>Weight</th>
+              <th>Focus</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td>{{fighter.height_ft}}</td>
+              <td>{{fighter.weight}} lbs</td>
+              <td>{{fighter.strengths}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table class="responsive-table">
+            <thead>
+            <tr>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Draws</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td>{{fighter.wins}}</td>
+              <td>{{fighter.losses}}</td>
+              <td>{{fighter.draws}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table class="responsive-table">
+            <thead>
+            <tr>
+              <th>Stats</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Average Fight Time</td>
+                <td>{{fighter.AverageFightTime}}</td>
+              </tr>
+              <tr>
+                <td>Striking Accuracy</td>
+                <td>{{fighter.StrikingAccuracy}}</td>
+              </tr>
+              <tr>
+                <td>Striking Defense</td>
+                <td>{{fighter.StrikingDefense}}</td>
+              </tr>
+              <tr>
+                <td>Takedown Accuracy</td>
+                <td>{{fighter.TakedownAccuracy}}</td>
+              </tr>
+              <tr>
+                <td>Takedown Defense</td>
+                <td>{{fighter.TakedownDefense}}</td>
+              </tr>
+              <tr>
+                <td>Average Submission Attempts</td>
+                <td>{{fighter.avg_submission_attempts}}</td>
+              </tr>
+              <tr>
+                <td>TKO Wins</td>
+                <td>{{fighter.ko_tko_wins}}</td>
+              </tr>
+              <tr>
+                <td>Decision Wins</td>
+                <td>{{fighter.decision_wins}}</td>
+              </tr>
+              <tr>
+                <td>Submission Wins</td>
+                <td>{{fighter.submission_wins}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col s12">
+    <h1>Career Fights</h1>
+  </div>
+
+  <div class="col s12 m12 l6" *ngFor="let fight of fighter.fights; let i = index">
+    <div class="article">
+
+      <div class="card hoverable">
+        <div class="card-content">
+
+          <div class="">
+            <h4 class="truncate">{{fight.Event.Name}}</h4>
+            <p>Opponent: {{fight.Opponent.FirstName}} {{fight.Opponent.LastName}}</p>
+            <p>
+              <img src="{{fighter.profile_image}}" /><img src="{{fight.Opponent.profile_image}}" />
+            </p>
+            <p>Result: {{fight.Result.Outcome}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/news/{{fight.url_name}}" target="_blank">More</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <div class="col s12">
+    <h1>News</h1>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12" *ngFor="let news of fighterNews; let i = index">
+    <div class="article" [hidden]="i >= newsLength" *ngIf="i < newsLength">
+
+      <div class="card hoverable" (click)="getFighterDetail(news.id)">
+        <div class="card-content">
+
+          <div class="">
+            <h4 class="truncate">{{news.title}}</h4>
+            <p [innerHTML]="news.introduction"></p>
+            <p>
+              <img src="{{news.thumbnail}}" />
+            </p>
+            <p>{{news.author}}</p>
+            <p>{{news.article_date | amTimeAgo}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/news/{{news.url_name}}" target="_blank">Full Article</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div [hidden]="!loadMoreNewsShown" class="col s12">
+    <button (click)="loadMoreNews()" class="waves-effect waves-light btn black">More News</button>
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <div class="col s12">
+    <h1>Media Coverage</h1>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12" *ngFor="let media of fighterMedia; let i = index">
+    <div class="article" [hidden]="i >= mediaLength" *ngIf="i < mediaLength">
+
+      <div class="card hoverable" (click)="getFighterDetail(media.id)">
+        <div class="card-content">
+
+          <div class="">
+            <h4 class="truncate">{{media.title}}</h4>
+            <p [innerHTML]="media.description"></p>
+            <p>
+              <img src="{{media.thumbnail}}" alt="{{media.title}}" />
+            </p>
+            <p>{{media.author}}</p>
+            <p>{{media.last_modified | amTimeAgo}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/media/{{media.url_name}}" target="_blank">Full Article</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div [hidden]="!loadMoreMediaShown" class="col s12">
+    <button (click)="loadMoreMedia()" class="waves-effect waves-light btn black">More Media</button>
+  </div>
+
+</div>

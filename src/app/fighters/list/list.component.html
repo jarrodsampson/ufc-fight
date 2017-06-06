@@ -1,0 +1,36 @@
+
+
+<div class="row">
+  <div class="" [ngBusy]="{busy: busy, message: 'Getting Fighters...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12 m6 l4" *ngFor="let fighter of fighterList; let i = index">
+    <div class="article" [hidden]="i >= numberL" *ngIf="i < numberL">
+
+      <div class="card hoverable" (click)="getFighterDetail(fighter.id)">
+        <div class="card-content">
+
+          <div class="center-align">
+            <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
+            <p>{{fighter.nickname}}</p>
+            <p>
+              <img src="{{fighter.profile_image}}" />
+            </p>
+            <p>{{fighter.weight_class}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="search-results"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="1500"
+     (scrolled)="getMoreFighters()">
+</div>

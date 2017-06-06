@@ -1,0 +1,28 @@
+
+
+<div class="row">
+  <div class="" [ngBusy]="{busy: busy, message: 'Getting Title Holders...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12 m6 l6" *ngFor="let fighter of titleHoldersList; let i = index">
+    <div class="article">
+
+      <div class="card hoverable">
+        <div class="card-content">
+
+          <div class="center-align">
+            <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
+            <p>{{fighter.nickname}}</p>
+            <p>
+              <img src="{{fighter.belt_thumbnail}}" />
+            </p>
+            <p>{{fighter.weight_class}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
