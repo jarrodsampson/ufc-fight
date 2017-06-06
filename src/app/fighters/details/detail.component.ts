@@ -21,6 +21,14 @@ export class FighterDetailsComponent implements OnInit {
       Result: ""}
     ]
   };
+  fightDetails = {
+      Event: {
+        Location: ""
+      },
+      Opponent: "",
+      Result: "",
+      WeightClass: ""
+  };
 
   fighterNews: Array<string> = [];
   fighterMedia: Array<string> = [];
@@ -84,5 +92,10 @@ export class FighterDetailsComponent implements OnInit {
     if (this.newsLength >= this.fighterNews.length) {
       this.loadMoreNewsShown = false;
     }
+  }
+
+  loadFighterDetails(fight) {
+    this.fightDetails = fight;
+    console.log(fight);
   }
 }

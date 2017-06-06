@@ -1,0 +1,30 @@
+
+
+<div class="row">
+  <div class="" [ngBusy]="{busy: busy, message: 'Getting News...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12 m6 l6" *ngFor="let news of newsList; let i = index">
+    <div class="article">
+
+      <div class="card hoverable">
+        <div class="card-content">
+
+          <div class="center-align">
+            <h4 class="truncate">{{news.title}}</h4>
+            <p [innerHTML]="news.introduction"></p>
+            <p>
+              <img src="{{news.thumbnail}}" />
+            </p>
+            <p>{{news.author}}</p>
+            <p>{{news.article_date | amTimeAgo}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/news/{{news.url_name}}" target="_blank">Full Article</a></p>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

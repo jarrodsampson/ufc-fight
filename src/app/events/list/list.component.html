@@ -1,0 +1,40 @@
+
+
+<div class="row">
+  <div class="" [ngBusy]="{busy: busy, message: 'Getting Fighters...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12 m6 l6" *ngFor="let event of eventsList; let i = index">
+    <div class="article" [hidden]="i >= eventsLength" *ngIf="i < eventsLength">
+
+      <div class="card hoverable">
+        <div class="card-content">
+
+          <div class="center-align">
+            <h4 class="truncate">{{event.base_title}}</h4>
+            <p>{{event.arena}} {{event.location}}</p>
+            <p>{{event.event_dategmt | date:'longDate' }}</p>
+            <p>
+              <img src="{{event.feature_image}}" />
+            </p>
+            <p>{{event.subtitle}}</p>
+            <p>{{event.created | amTimeAgo:false}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/news/{{event.url_name}}" target="_blank">Full Article</a></p>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="search-results"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="1500"
+     (scrolled)="loadMoreEvents()">
+</div>

@@ -131,12 +131,12 @@
             <h4 class="truncate">{{fight.Event.Name}}</h4>
             <p>Opponent: {{fight.Opponent.FirstName}} {{fight.Opponent.LastName}}</p>
             <p>
-              <img src="{{fighter.profile_image}}" /><img src="{{fight.Opponent.profile_image}}" />
+              <img src="{{fighter.profile_image}}" /><img src="{{fight.Opponent.profile_image || 'assets/images/placeholder.png' }}" />
             </p>
             <p>Result: {{fight.Result.Outcome}}</p>
           </div>
 
-          <p class="websiteLink"><a href="http://www.ufc.com/news/{{fight.url_name}}" target="_blank">More</a></p>
+          <p class="websiteLink"><a (click)="fightModal.open(); loadFighterDetails(fight)">More</a></p>
 
         </div>
       </div>
@@ -228,3 +228,31 @@
   </div>
 
 </div>
+
+
+<mz-modal #fightModal [fixedFooter]="false">
+  <mz-modal-header>
+    <h4>{{fightDetails.Event.Name}}
+      <span class="nightFight" *ngIf="fightDetails.Result.FightOfTheNight === '1'">Fight of The Night</span>
+    </h4>
+  </mz-modal-header>
+  <mz-modal-content>
+    <p>{{fightDetails.Event.Location.Venue}} <em>{{fightDetails.Event.Location.Country}}</em></p>
+    <p>{{fightDetails.WeightClass.Description}} ({{fightDetails.WeightClass.Abbreviation}})</p>
+    <p>Opponent: {{fightDetails.Opponent.FirstName}} {{fightDetails.Opponent.LastName}} <em>{{fightDetails.Opponent.Nickname}}</em></p>
+    <p>
+      <img src="{{fightDetails.Opponent.profile_image || 'assets/images/placeholder.png'}}" alt="{{fightDetails.Opponent.FirstName}} {{fightDetails.Opponent.LastName}}" />
+    </p>
+    <h5>Results</h5>
+    <p>{{fightDetails.Result.Outcome}} from {{fightDetails.Result.Method}}
+      <span *ngIf="fightDetails.Result.Method === 'Submission'">({{fightDetails.Result.Submission}})</span>
+      <span *ngIf="fightDetails.Result.Method === 'KO/TKO'">({{fightDetails.Result.EndStrike}} to {{fightDetails.Result.EndTarget}})</span>
+    </p>
+    <p>Round: {{fightDetails.Result.EndingRound}}</p>
+    <p>Time: {{fightDetails.Result.EndingTime}}</p>
+
+  </mz-modal-content>
+  <mz-modal-footer>
+    <button mz-button [flat]="true" class="mod" mz-modal-close>Got It</button>
+  </mz-modal-footer>
+</mz-modal>

@@ -39,4 +39,8 @@ export class OctagonGirlsListComponent implements OnInit {
       }
     );
   }
+
+  getGirlDetail(girlId) {
+     this.router.navigate(['./octagon/ladies/' + encodeURI(girlId)]);
+  }
 }

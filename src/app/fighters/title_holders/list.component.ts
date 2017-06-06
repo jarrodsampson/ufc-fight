@@ -40,4 +40,8 @@ export class TitleHolderListComponent implements OnInit {
       }
     );
   }
+
+  getFighterDetail(fighterId) {
+      this.router.navigate(['./fighter/' + encodeURI(fighterId)]);
+  }
 }

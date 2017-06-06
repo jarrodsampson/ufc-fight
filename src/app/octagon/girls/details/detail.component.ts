@@ -14,8 +14,10 @@ export class OctagonGirlDetailsComponent implements OnInit {
 
   girlId: string = "";
   girl = {
-    first_name: ""
+    first_name: "",
+    gallery: []
   };
+  busy: Subscription;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle( "RingSide - Octagon Girls - UFC Champions" );
@@ -39,7 +41,7 @@ export class OctagonGirlDetailsComponent implements OnInit {
     /*
      Get all news sources
      */
-    this._apiService.getGirlDetails(this.girlId).subscribe(
+    this.busy = this._apiService.getGirlDetails(this.girlId).subscribe(
       data => {
         this.girl = data;
       },
@@ -49,5 +51,9 @@ export class OctagonGirlDetailsComponent implements OnInit {
         console.log("girl data", this.girl);
       }
     );
+  }
+
+  goBack() {
+      window.history.back();
   }
 }

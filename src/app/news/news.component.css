@@ -1,0 +1,9 @@
+
+.card .card-content {
+  min-height:400px;
+  max-height:400px;
+}
+
+.card .card-content img {
+  max-width:100%;
+}

@@ -1,0 +1,26 @@
+
+
+<div class="row">
+  <div class="col s12 m12 l12" *ngFor="let girl of ladiesList; let i = index">
+    <div class="article">
+
+      <div class="card hoverable" (click)="getGirlDetail(girl.id)">
+        <div class="card-content">
+
+          <div class="">
+            <h4 class="truncate">{{girl.first_name}} {{girl.last_name}}</h4>
+            <p>{{girl.city_residing}} {{girl.country_residing}}</p>
+            <p [innerHTML]="girl.quote"></p>
+            <p>
+              <img src="{{girl.medium_profile_picture}}" alt="{{girl.first_name}}" />
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

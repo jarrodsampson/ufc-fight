@@ -1,0 +1,44 @@
+
+
+<div class="banner">
+  <img src="{{girl.banner_background_image}}" />
+</div>
+
+<div class="row">
+
+  <div class="" [ngBusy]="{busy: busy, message: 'Loading Lady...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12">
+    <button (click)="goBack()" class="waves-effect waves-light btn black">Go Back</button>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
+
+        <div class="">
+          <h4 class="truncate">{{girl.first_name}} {{girl.last_name}}</h4>
+          <p>{{girl.city_residing}} {{girl.country_residing}}</p>
+          <p>{{girl.quote}}</p>
+          <p [innerHTML]="girl.biography1"></p>
+
+          <div *ngIf="girl.gallery.length > 0" class="gallery row">
+            <div class="col s6 m4 l4" *ngFor="let image of girl.gallery; let i = index">
+              <img src="{{image.thumbnail_path}}" />
+            </div>
+          </div>
+
+
+          <p [innerHTML]="girl.biography2"></p>
+
+          <p class="center-align">
+            <img src="{{girl.large_body_picture}}" />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

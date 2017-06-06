@@ -13,6 +13,8 @@ import * as _ from 'underscore';
 export class EventsListComponent implements OnInit {
 
   eventsList: Array<string> = [];
+  eventsLength: number = 14;
+  loadMoreEventsShown: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "Events - UFC Champions" );
@@ -38,5 +40,12 @@ export class EventsListComponent implements OnInit {
         console.log("Event List data", this.eventsList);
       }
     );
+  }
+
+  loadMoreEvents() {
+      this.eventsLength += 20;
+      if (this.eventsLength >= this.eventsList.length) {
+        this.loadMoreEventsShown = false;
+      }
   }
 }
