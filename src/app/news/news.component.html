@@ -12,7 +12,7 @@
             <h4 class="truncate">{{news.title}}</h4>
             <p [innerHTML]="news.introduction"></p>
             <p>
-              <img src="{{news.thumbnail}}" />
+              <img src="{{news.thumbnail || 'assets/images/placeholder2.jpg'}}" />
             </p>
             <p>{{news.author}}</p>
             <p>{{news.article_date | amTimeAgo}}</p>

@@ -12,8 +12,12 @@ import * as _ from 'underscore';
 })
 export class TitleHolderListComponent implements OnInit {
 
-  titleHoldersList: Array<string> = [];
+  titleHoldersList: Array<any> = [];
   busy: Subscription;
+  search = {
+    name: ""
+  };
+  isLoading: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "Title Holders - UFC Champions" );
@@ -32,11 +36,12 @@ export class TitleHolderListComponent implements OnInit {
      */
     this.busy = this._apiService.getAllTitleHolders().subscribe(
       data => {
-        this.titleHoldersList = this.titleHoldersList.concat(data);
+        this.titleHoldersList = _.shuffle(this.titleHoldersList.concat(data));
       },
       err => console.error(err),
       () => {
         console.log("Title Holder List data", this.titleHoldersList);
+        this.isLoading = false;
       }
     );
   }

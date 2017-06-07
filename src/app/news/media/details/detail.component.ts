@@ -13,9 +13,11 @@ import * as _ from 'underscore';
 export class MediaDetailsComponent implements OnInit {
 
   mediaId: string = "";
+  busy: Subscription;
   media = {
     title: ""
   };
+  isLoading: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle( "Media - UFC Champions" );
@@ -39,7 +41,7 @@ export class MediaDetailsComponent implements OnInit {
     /*
      Get all news sources
      */
-    this._apiService.getMediaDetails(this.mediaId).subscribe(
+    this.busy = this._apiService.getMediaDetails(this.mediaId).subscribe(
       data => {
         this.media = data;
       },
@@ -47,7 +49,15 @@ export class MediaDetailsComponent implements OnInit {
       () => {
         this.titleService.setTitle( this.media.title + ' - UFC Champions' );
         console.log("media data", this.media);
+        this.isLoading = false;
       }
     );
+  }
+
+  /*
+   Native back button functionality
+   */
+  goBack() {
+    window.history.back();
   }
 }

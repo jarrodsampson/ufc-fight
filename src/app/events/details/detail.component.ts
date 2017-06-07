@@ -18,7 +18,13 @@ export class EventDetailsComponent implements OnInit {
   };
   fightList: Array<string> = [];
   mediaList: Array<string> = [];
-  ticketList: Array<string> = [];
+  tickets = {};
+  busy: Subscription;
+  isLoading: boolean = true;
+  fightDetails = {};
+  zoom = 12; // initial zoom
+  numberL: number = 5;
+  loadMoreMediaShown: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle( "Events - UFC Champions" );
@@ -33,21 +39,21 @@ export class EventDetailsComponent implements OnInit {
 
 
     /*
-     Get all news sources
+     Get event detail function
      */
     this.getEventDetail();
   }
 
   getEventDetail() {
     /*
-     Get all news sources
+     Get event details from all sources
      */
-    this._apiService.getEventDetails(this.eventId).subscribe(
+    this.busy = this._apiService.getEventDetails(this.eventId).subscribe(
       data => {
         this.event = data[0];
         this.fightList = data[1];
         this.mediaList = data[2];
-        this.ticketList = data[3];
+        this.tickets = data[3];
       },
       err => console.error(err),
       () => {
@@ -55,8 +61,38 @@ export class EventDetailsComponent implements OnInit {
         console.log("Event data", this.event);
         console.log("Event Fight data", this.fightList);
         console.log("Event Media data", this.mediaList);
-        console.log("Event Ticket data", this.ticketList);
+        console.log("Event Ticket data", this.tickets);
+        this.isLoading = false;
+        if (this.numberL >= this.mediaList.length) {
+          this.loadMoreMediaShown = false;
+        }
       }
     );
+  }
+
+  /*
+   Native back button functionality
+   */
+  goBack() {
+    window.history.back();
+  }
+
+  /*
+   Modal Popup Detail transfer
+   */
+  loadFightDetails(fight) {
+    this.fightDetails = fight;
+    console.log(fight);
+  }
+
+  /*
+   Increment event listings to save loading space using ngIf and hidden
+   */
+  loadMoreMedia() {
+
+    this.numberL += 10;
+    if (this.numberL >= this.mediaList.length) {
+      this.loadMoreMediaShown = false;
+    }
   }
 }

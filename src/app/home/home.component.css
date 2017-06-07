@@ -10,10 +10,11 @@
   position: relative;
 }
 
-.card .card-content {
-  min-height:290px;
-  max-height:290px;
+.championsList .card .card-content {
+  min-height:400px;
+  max-height:400px;
 }
+
 
 .newsDate {
   position: absolute;
@@ -29,4 +30,17 @@
   font-size: 12pt;
   color: orange;
   cursor: pointer;
+}
+
+.communityList {
+  max-width:1000px;
+  margin:auto;
+}
+
+.communityList a {
+  color:red;
+}
+
+.communityList i {
+  color:red;
 }

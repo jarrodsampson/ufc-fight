@@ -6,7 +6,6 @@ export class APIService {
   constructor(private http:Http) { }
 
   server = "http://ufc-data-api.ufc.com/api/";
-  apiKey = "20f3de178d994258ae073833356a7b51";
 
   getAllFighters() {
     return this.http.get(this.server + 'v3/us/fighters').map((res:Response) => res.json());
@@ -63,7 +62,11 @@ export class APIService {
 
   getHomePageData() {
     return Observable.forkJoin(
-      this.http.get('//www.reddit.com/r/ufc/new.json?limit=100').map((res:Response) => res.json())
+      this.http.get('//www.reddit.com/r/ufc/new.json?limit=100').map((res:Response) => res.json()),
+      this.http.get(this.server + 'v3/iphone/fighters/title_holders').map((res:Response) => res.json()),
+      this.http.get(this.server + 'v3/us/fighters').map((res:Response) => res.json()),
+      this.http.get(this.server + 'v3/us/events').map((res:Response) => res.json()),
+      this.http.get(this.server + 'v3/iphone/octagon_girls').map((res:Response) => res.json())
     );
   }
 }

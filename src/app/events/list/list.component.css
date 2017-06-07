@@ -2,10 +2,10 @@
 
 .card .card-content img {
   max-width:100%;
-  max-height: 245px;
+  max-height: 280px;
 }
 
 .card .card-content {
-  min-height:450px;
-  max-height:450px;
+  min-height:500px;
+  max-height:500px;
 }

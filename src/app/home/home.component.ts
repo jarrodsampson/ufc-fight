@@ -14,7 +14,12 @@ export class HomeComponent implements OnInit {
 
   busy: Subscription;
   isLoading: boolean = false;
-  reddit: Array<string> = [];
+  reddit: Array<any> = [];
+  champions: Array<any> = [];
+  fotw: Array<any> = [];
+  events: Array<any> = [];
+  ladies: Array<any> = [];
+  p: number = 1;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "UFC Champions - Home" );
@@ -23,7 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     /*
-     Get all news sources
+     Get all homepage data
      */
     this.getHomepageData();
 
@@ -37,6 +42,10 @@ export class HomeComponent implements OnInit {
     this.busy = this._apiService.getHomePageData().subscribe(
       data => {
         this.reddit = data[0].data.children;
+        this.champions = _.shuffle(data[1]);
+        this.fotw = _.shuffle(data[2]).slice(0,10);
+        this.events = data[3];
+        this.ladies = data[4];
       },
       err => console.error(err),
       () => {

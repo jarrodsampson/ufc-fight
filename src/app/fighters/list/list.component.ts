@@ -12,9 +12,13 @@ import * as _ from 'underscore';
 })
 export class FightersListComponent implements OnInit {
 
-  fighterList: Array<string> = [];
+  fighterList: Array<any> = [];
   numberL: number = 24;
   busy: Subscription;
+  search = {
+    name: ""
+  };
+  isLoading: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "Fighters - UFC Champions" );
@@ -33,11 +37,12 @@ export class FightersListComponent implements OnInit {
      */
     this.busy = this._apiService.getAllFighters().subscribe(
       data => {
-        this.fighterList = this.fighterList.concat(data);
+        this.fighterList = _.shuffle(this.fighterList.concat(data));
       },
       err => console.error(err),
       () => {
         console.log("Fighter List data", this.fighterList);
+        this.isLoading = false;
       }
     );
   }

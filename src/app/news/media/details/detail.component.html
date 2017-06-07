@@ -1,0 +1,40 @@
+<div class="row">
+
+  <div class="" [ngBusy]="{busy: busy, message: 'Loading Media Details...', backdrop: false, delay: 0, minDuration: 500}"></div>
+  <div class="col s12">
+    <button (click)="goBack()" class="waves-effect waves-light btn black">Go Back</button>
+  </div>
+
+</div>
+
+<div class="row" [hidden]="isLoading">
+
+  <div class="col s12">
+    <div class="card hoverable">
+      <div class="card-content">
+        <div class="center-align">
+
+          <div>
+            <h4>{{media.title}}</h4>
+            <p>{{media.created | amTimeAgo}}</p>
+          </div>
+
+          <div>
+            <p [innerHTML]="media.description"></p>
+            <br />
+            <p>
+              <img src="{{media.thumbnail}}" alt="{{media.title}}" />
+            </p>
+
+            <p class=""><a href="{{media.mobile_video_url}}" target="_blank">Video</a></p>
+
+          </div>
+
+
+          <p class="websiteLink"><a href="http://www.ufc.com/media/{{media.url_name}}" target="_blank">Full Article</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

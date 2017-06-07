@@ -1,8 +1,25 @@
 
+<div class="row">
+
+  <div class="col s12">
+    <h4>Our Fighters</h4>
+    <p [hidden]="isLoading"><em>{{(fighterList | fighterSearchFilter:search).length}} Fighters Found</em></p>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col s12 m6 l6">
+    <div class="">
+      <input class="" type="text" [(ngModel)]="search.name" placeholder="Search Fighters..."/>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="" [ngBusy]="{busy: busy, message: 'Getting Fighters...', backdrop: false, delay: 0, minDuration: 500}"></div>
-  <div class="col s12 m6 l4" *ngFor="let fighter of fighterList; let i = index">
+  <div class="col s12 m6 l4" *ngFor="let fighter of fighterList | fighterSearchFilter:search; let i = index">
     <div class="article" [hidden]="i >= numberL" *ngIf="i < numberL">
 
       <div class="card hoverable" (click)="getFighterDetail(fighter.id)">
@@ -14,7 +31,7 @@
             <p>
               <img src="{{fighter.profile_image}}" />
             </p>
-            <p>{{fighter.weight_class}}</p>
+            <p>{{fighter.weight_class || "No Weight Class Specified"}}</p>
           </div>
 
           <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>
@@ -27,6 +44,13 @@
   </div>
 </div>
 
+<div [hidden]="isLoading" class="row" *ngIf="(fighterList | fighterSearchFilter:search).length === 0">
+
+  <div class="col s12">
+    <p><em>No Fighters Found</em></p>
+  </div>
+
+</div>
 
 <div class="search-results"
      infiniteScroll

@@ -29,11 +29,17 @@ import {BusyModule} from 'angular2-busy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { RouterModule } from '@angular/router';
 import {APP_ROUTES} from './routes';
 
 import { APIService } from './services/APIService';
+
+import { FighterSearchPipe } from './pipes/fighterSearchPipe';
+import { EventSearchPipe } from './pipes/eventSearchPipe';
+import { LadiesSearchPipe } from './pipes/ladiesSearchPipe';
+import { MediaSearchPipe } from './pipes/mediaSearchPipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,11 @@ import { APIService } from './services/APIService';
     OctagonGirlDetailsComponent,
     EventDetailsComponent,
     MediaListComponent,
-    MediaDetailsComponent
+    MediaDetailsComponent,
+    FighterSearchPipe,
+    EventSearchPipe,
+    LadiesSearchPipe,
+    MediaSearchPipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +76,10 @@ import { APIService } from './services/APIService';
     BrowserAnimationsModule,
     BusyModule,
     InfiniteScrollModule,
-    ChartsModule
+    ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBsDLQjdZVeJfFkyQdC4BdKM5QDdvfPFuw'
+    })
   ],
   providers: [APIService, Title],
   bootstrap: [AppComponent]

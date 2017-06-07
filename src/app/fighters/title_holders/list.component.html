@@ -1,8 +1,23 @@
+<div class="row">
 
+  <div class="col s12">
+    <h4>Title Holders</h4>
+    <p [hidden]="isLoading"><em>{{(titleHoldersList | fighterSearchFilter:search).length}} Holders Found</em></p>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col s12 m6 l6">
+    <div class="">
+      <input class="" type="text" [(ngModel)]="search.name" placeholder="Search Title Holders..."/>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="" [ngBusy]="{busy: busy, message: 'Getting Title Holders...', backdrop: false, delay: 0, minDuration: 500}"></div>
-  <div class="col s12 m6 l6" *ngFor="let fighter of titleHoldersList; let i = index" (click)="getFighterDetail(fighter.id)">
+  <div class="col s12 m6 l6" *ngFor="let fighter of titleHoldersList | fighterSearchFilter:search; let i = index" (click)="getFighterDetail(fighter.id)">
     <div class="article">
 
       <div class="card hoverable">
@@ -25,4 +40,12 @@
     </div>
 
   </div>
+</div>
+
+<div [hidden]="isLoading" class="row" *ngIf="(titleHoldersList | fighterSearchFilter:search).length === 0">
+
+  <div class="col s12">
+    <p><em>No Title Holders Found</em></p>
+  </div>
+
 </div>

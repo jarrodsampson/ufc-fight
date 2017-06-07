@@ -1,0 +1,63 @@
+<div class="" [ngBusy]="{busy: busy, message: 'Fetching Media...', backdrop: false, delay: 0, minDuration: 500}"></div>
+
+<div class="row">
+
+  <div class="col s12">
+    <h4>Media Coverage</h4>
+    <p [hidden]="isLoading"><em>{{(mediaList | mediaSearchFilter:search).length}} Media Items Found</em></p>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col s12 m6 l6">
+    <div class="">
+      <input class="" type="text" [(ngModel)]="search.name" placeholder="Search Media..."/>
+    </div>
+  </div>
+</div>
+
+<div class="row" [hidden]="isLoading">
+  <div class="col s12 m12 l6" *ngFor="let media of mediaList | mediaSearchFilter:search; let i = index">
+    <div class="article" [hidden]="i >= mediaLength" *ngIf="i < mediaLength">
+
+      <div class="card hoverable" (click)="getMediaDetails(media.id)">
+        <div class="card-content">
+
+          <div class="center-align">
+            <h4 class="">{{media.title}}</h4>
+            <p [innerHTML]="media.description"></p>
+            <br />
+            <p>
+              <img src="{{media.thumbnail}}" alt="{{media.title}}" />
+            </p>
+            <p>{{media.created | amTimeAgo}}</p>
+          </div>
+
+          <p class="websiteLink"><a href="http://www.ufc.com/media/{{media.url_name}}" target="_blank">Full Article</a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div [hidden]="isLoading" class="row" *ngIf="(mediaList | mediaSearchFilter:search).length === 0">
+
+  <div class="col s12">
+    <p><em>No Media Coverage Found.</em></p>
+  </div>
+
+</div>
+
+<div class="search-results"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="1500"
+     (scrolled)="loadMoreMedia()">
+</div>

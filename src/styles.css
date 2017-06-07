@@ -57,6 +57,22 @@ nav ul a {
   color:red !important;
 }
 
+.websiteLink {
+  position: absolute;
+  bottom: 1em;
+  right: 50%;
+  width: 200px;
+  margin-right: -100px !important;
+  text-align:center;
+}
+
+.ngx-pagination .current {
+  background: red !important;
+}
+
+.ngx-pagination li {
+  cursor:pointer;
+}
 
 @media(max-width:992px) {
   .collapser {

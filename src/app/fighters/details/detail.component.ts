@@ -37,6 +37,7 @@ export class FighterDetailsComponent implements OnInit {
   mediaLength: number = 10;
   loadMoreMediaShown: boolean = true;
   loadMoreNewsShown: boolean = true;
+  isLoading: boolean = true;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute) {
     this.titleService.setTitle( "Fighters - UFC Champions" );
@@ -50,14 +51,14 @@ export class FighterDetailsComponent implements OnInit {
     });
 
     /*
-     Get all news sources
+     Get fighter details
      */
     this.getFighterDetail();
   }
 
   getFighterDetail() {
     /*
-     Get all news sources
+     Get fighter details from all sources
      */
     this.busy = this._apiService.getFighterDetails(this.fighterId).subscribe(
       data => {
@@ -71,14 +72,20 @@ export class FighterDetailsComponent implements OnInit {
         console.log("Fighter data", this.fighter);
         console.log("Fighter News data", this.fighterNews);
         console.log("Fighter Media data", this.fighterMedia);
+        this.isLoading = false;
       }
     );
   }
 
+  /*
+    Native back button functionality
+   */
   goBack() {
     window.history.back();
   }
-
+  /*
+   Increment event listings to save loading space using ngIf and hidden
+   */
   loadMoreMedia() {
 
     this.mediaLength += 10;
@@ -86,7 +93,9 @@ export class FighterDetailsComponent implements OnInit {
       this.loadMoreMediaShown = false;
     }
   }
-
+  /*
+   Increment event listings to save loading space using ngIf and hidden
+   */
   loadMoreNews() {
     this.newsLength += 10;
     if (this.newsLength >= this.fighterNews.length) {
@@ -94,6 +103,9 @@ export class FighterDetailsComponent implements OnInit {
     }
   }
 
+  /*
+    Modal Popup Detail transfer
+   */
   loadFighterDetails(fight) {
     this.fightDetails = fight;
     console.log(fight);

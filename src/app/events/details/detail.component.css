@@ -1,0 +1,18 @@
+.fights .card .card-content {
+  min-height:365px;
+  max-height:365px;
+}
+
+.map {
+  width: 300px;
+  height: 300px;
+  top: 0;
+  right: 0;
+  z-index:0;
+  margin:0;
+  padding:0;
+}
+
+.mapContainer {
+  overflow:hidden;
+}

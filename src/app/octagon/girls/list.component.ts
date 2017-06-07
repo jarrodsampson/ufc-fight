@@ -12,7 +12,12 @@ import * as _ from 'underscore';
 })
 export class OctagonGirlsListComponent implements OnInit {
 
-  ladiesList: Array<string> = [];
+  ladiesList: Array<any> = [];
+  isLoading: boolean = true;
+  busy: Subscription;
+  search = {
+    name: ""
+  };
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "RingSide - Octagon Girls - UFC Champions" );
@@ -29,13 +34,14 @@ export class OctagonGirlsListComponent implements OnInit {
     /*
      Get all news sources
      */
-    this._apiService.getAllOctagonGirls().subscribe(
+    this.busy = this._apiService.getAllOctagonGirls().subscribe(
       data => {
-        this.ladiesList = this.ladiesList.concat(data);
+        this.ladiesList = _.shuffle(this.ladiesList.concat(data));
       },
       err => console.error(err),
       () => {
         console.log("Ladies List data", this.ladiesList);
+        this.isLoading = false;
       }
     );
   }

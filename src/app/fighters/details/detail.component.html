@@ -7,7 +7,7 @@
 
 </div>
 
-<div class="row">
+<div class="row" [hidden]="isLoading">
 
   <div class="col s12">
     <div class="card hoverable">
@@ -115,7 +115,7 @@
 
 </div>
 
-<div class="row">
+<div class="row" [hidden]="isLoading">
 
   <div class="col s12">
     <h1>Career Fights</h1>
@@ -148,7 +148,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" [hidden]="isLoading">
 
   <div class="col s12">
     <h1>News</h1>
@@ -182,14 +182,14 @@
 
   </div>
 
-  <div [hidden]="!loadMoreNewsShown" class="col s12">
+  <div [hidden]="!loadMoreNewsShown || isLoading" class="col s12">
     <button (click)="loadMoreNews()" class="waves-effect waves-light btn black">More News</button>
   </div>
 
 </div>
 
 
-<div class="row">
+<div class="row" [hidden]="isLoading">
 
   <div class="col s12">
     <h1>Media Coverage</h1>
@@ -197,7 +197,7 @@
 
 </div>
 
-<div class="row">
+<div class="row" [hidden]="isLoading">
   <div class="col s12 m12 l12" *ngFor="let media of fighterMedia; let i = index">
     <div class="article" [hidden]="i >= mediaLength" *ngIf="i < mediaLength">
 
@@ -223,7 +223,7 @@
 
   </div>
 
-  <div [hidden]="!loadMoreMediaShown" class="col s12">
+  <div [hidden]="!loadMoreMediaShown || isLoading" class="col s12">
     <button (click)="loadMoreMedia()" class="waves-effect waves-light btn black">More Media</button>
   </div>
 
@@ -253,6 +253,6 @@
 
   </mz-modal-content>
   <mz-modal-footer>
-    <button mz-button [flat]="true" class="mod" mz-modal-close>Got It</button>
+    <button mz-button [flat]="true" class="mod" mz-modal-close>Close</button>
   </mz-modal-footer>
 </mz-modal>
