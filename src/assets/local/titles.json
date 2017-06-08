@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Women Featherweight",
+    "id": "Women_Featherweight"
+  },
+  {
+    "title": "Women Bantamweight",
+    "id": "Women_Bantamweight"
+  },
+  {
+    "title": "Middleweight",
+    "id": "Middleweight"
+  },
+  {
+    "title": "Lightweight",
+    "id": "Lightweight"
+  },
+  {
+    "title": "Featherweight",
+    "id": "Featherweight"
+  },
+  {
+    "title": "Heavyweight",
+    "id": "Heavyweight"
+  },
+  {
+    "title": "Light Heavyweight",
+    "id": "Light_Heavyweight"
+  },
+  {
+    "title": "Women Strawweight",
+    "id": "Women_Strawweight"
+  },
+  {
+    "title": "Bantamweight",
+    "id": "Bantamweight"
+  },
+  {
+    "title": "Flyweight",
+    "id": "Flyweight"
+  },
+  {
+    "title": "Welterweight",
+    "id": "Welterweight"
+  }
+]

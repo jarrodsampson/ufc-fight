@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   events: Array<any> = [];
   ladies: Array<any> = [];
   p: number = 1;
+  p1: number = 1;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "UFC Champions - Home" );
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
       data => {
         this.reddit = data[0].data.children;
         this.champions = _.shuffle(data[1]);
-        this.fotw = _.shuffle(data[2]).slice(0,10);
+        this.fotw = _.sample(data[2], 10);
         this.events = data[3];
         this.ladies = data[4];
       },

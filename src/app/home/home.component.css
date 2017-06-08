@@ -2,19 +2,44 @@
   margin:1em;
 }
 
+.banner .item {
+  margin:0;
+}
+
+.banner .item img {
+  max-height: 400px;
+}
+
 .banner {
   width:100%;
   height:400px;
-  background:url('../../assets/images/wall1.jpg') top center fixed;
-  background-size:cover;
   position: relative;
 }
 
 .championsList .card .card-content {
-  min-height:400px;
-  max-height:400px;
+  min-height:420px;
+  max-height:420px;
 }
 
+.fightersList .card .card-content {
+  min-height:360px;
+  max-height:360px;
+}
+
+.eventsList .card .card-content {
+  min-height:235px;
+  max-height:235px;
+}
+
+.techList .card .card-content {
+  min-height:455px;
+  max-height:455px;
+}
+
+.techList .card .card-content img{
+  max-width: 88%;
+  margin: auto;
+}
 
 .newsDate {
   position: absolute;

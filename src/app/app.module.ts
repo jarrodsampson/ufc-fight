@@ -35,11 +35,13 @@ import { RouterModule } from '@angular/router';
 import {APP_ROUTES} from './routes';
 
 import { APIService } from './services/APIService';
+import { LocalService } from './services/LocalService';
 
 import { FighterSearchPipe } from './pipes/fighterSearchPipe';
 import { EventSearchPipe } from './pipes/eventSearchPipe';
 import { LadiesSearchPipe } from './pipes/ladiesSearchPipe';
 import { MediaSearchPipe } from './pipes/mediaSearchPipe';
+import { SymbolRemovalPipe } from './pipes/symbolRemovalPipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { MediaSearchPipe } from './pipes/mediaSearchPipe';
     FighterSearchPipe,
     EventSearchPipe,
     LadiesSearchPipe,
-    MediaSearchPipe
+    MediaSearchPipe,
+    SymbolRemovalPipe
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import { MediaSearchPipe } from './pipes/mediaSearchPipe';
       apiKey: 'AIzaSyBsDLQjdZVeJfFkyQdC4BdKM5QDdvfPFuw'
     })
   ],
-  providers: [APIService, Title],
+  providers: [APIService, Title, LocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

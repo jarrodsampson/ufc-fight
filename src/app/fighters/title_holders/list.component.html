@@ -13,6 +13,27 @@
       <input class="" type="text" [(ngModel)]="search.name" placeholder="Search Title Holders..."/>
     </div>
   </div>
+  <div class="col s12 m6 l6">
+    <div class="">
+      <mz-dropdown
+        [id]="'dropL'"
+        [align]="'left'"
+        [constrainWidth]="false"
+        [dropdownButtonId]="'dropTitle'"
+        [gutter]="true"
+        [hover]="true"
+        [inDuration]="300"
+        [outDuration]="300"
+        [stopPropagation]="true"
+      >
+        <mz-dropdown-item *ngFor="let title of titles; let i = index">
+          <a (click)="onSearchTitle(title)">{{title.title}}</a>
+        </mz-dropdown-item>
+      </mz-dropdown>
+
+      <a mz-button id="dropTitle" href="#">{{selectedTitle || "Titles"}}</a>
+    </div>
+  </div>
 </div>
 
 <div class="row">
@@ -29,7 +50,7 @@
             <p>
               <img src="{{fighter.belt_thumbnail}}" />
             </p>
-            <p>{{fighter.weight_class}}</p>
+            <p>{{fighter.weight_class | symbolRemoval:'_'}}</p>
           </div>
 
           <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>

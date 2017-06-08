@@ -15,6 +15,60 @@
       <input class="" type="text" [(ngModel)]="search.name" placeholder="Search Fighters..."/>
     </div>
   </div>
+  <div class="col s12 m6 l6">
+
+    <div class="col s12 m6 l6 no-padding">
+      <div class="">
+        <mz-dropdown
+          [id]="'dropL'"
+          [align]="'left'"
+          [constrainWidth]="false"
+          [dropdownButtonId]="'dropTitle'"
+          [gutter]="true"
+          [hover]="true"
+          [inDuration]="300"
+          [outDuration]="300"
+          [stopPropagation]="true"
+        >
+          <mz-dropdown-item *ngFor="let title of titles; let i = index">
+            <a (click)="onSearchTitle(title)">{{title.title}}</a>
+          </mz-dropdown-item>
+        </mz-dropdown>
+
+        <a mz-button id="dropTitle" href="#">{{selectedTitle || "Titles"}}</a>
+      </div>
+    </div>
+
+    <div class="col s12 m4 l4 no-padding">
+      <div class="">
+        <mz-dropdown
+          [id]="'dropS'"
+          [align]="'left'"
+          [constrainWidth]="false"
+          [dropdownButtonId]="'dropStatus'"
+          [gutter]="true"
+          [hover]="true"
+          [inDuration]="300"
+          [outDuration]="300"
+          [stopPropagation]="true"
+        >
+          <mz-dropdown-item>
+            <a (click)="onSearchStatus('Active')">Active</a>
+          </mz-dropdown-item>
+          <mz-dropdown-item>
+            <a (click)="onSearchStatus('NotFighting')">InActive</a>
+          </mz-dropdown-item>
+        </mz-dropdown>
+
+        <a mz-button id="dropStatus" href="#">{{selectedStatus || "Status"}}</a>
+      </div>
+    </div>
+
+    <div class="col s12 m2 l2 no-padding">
+      <a mz-button (click)="onSearchClear()">Clear</a>
+    </div>
+
+  </div>
 </div>
 
 <div class="row">
@@ -27,11 +81,11 @@
 
           <div class="center-align">
             <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
-            <p>{{fighter.nickname}}</p>
+            <p>{{fighter.nickname || "No Nickname" }}</p>
             <p>
               <img src="{{fighter.profile_image}}" />
             </p>
-            <p>{{fighter.weight_class || "No Weight Class Specified"}}</p>
+            <p>{{fighter.weight_class | symbolRemoval:'_' || "No Weight Class Specified"}}</p>
           </div>
 
           <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>

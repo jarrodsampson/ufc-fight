@@ -74,6 +74,15 @@ nav ul a {
   cursor:pointer;
 }
 
+.page-footer {
+  background:url('assets/images/wall1.jpg') top center;
+  background-size:100%;
+}
+
+.page-footer .footer-copyright {
+  opacity:0.7;
+}
+
 @media(max-width:992px) {
   .collapser {
     display: block;
