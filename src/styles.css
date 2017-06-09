@@ -83,6 +83,48 @@ nav ul a {
   opacity:0.7;
 }
 
+.card {
+  cursor:pointer;
+}
+
+.card-content h4 {
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+}
+
+.card-content:hover h4 {
+  color: red;
+  cursor:pointer;
+}
+
+.card .card-content:hover .zoom{
+  transform: scale(1.15);
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -o-transform: scale(1.15);
+}
+
+.zoom {
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  transition-timing-function: cubic-bezier(0.28, -0.55, 0.265, 1.55);
+}
+
+
+.websiteLink a{
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  transition-timing-function: cubic-bezier(0.28, -0.55, 0.265, 1.55);
+  color: red;
+}
+
+.websiteLink a:hover {
+  font-size:16pt;
+}
+
 @media(max-width:992px) {
   .collapser {
     display: block;

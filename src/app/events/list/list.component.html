@@ -18,10 +18,10 @@
 <div class="row">
   <div class="" [ngBusy]="{busy: busy, message: 'Getting Events...', backdrop: false, delay: 0, minDuration: 500}"></div>
   <div class="col s12 m6 l4" *ngFor="let event of eventsList | eventSearchFilter:search; let i = index">
-    <div class="article" [hidden]="i >= eventsLength" *ngIf="i < eventsLength" (click)="getEventDetails(event.id)">
+    <div class="article" [hidden]="i >= eventsLength" *ngIf="i < eventsLength">
 
       <div class="card hoverable">
-        <div class="card-content">
+        <div class="card-content" (click)="getEventDetails(event.id)">
 
           <div class="center-align">
             <h4 class="truncate">{{event.base_title}}</h4>
@@ -34,10 +34,10 @@
             <p>{{event.created | amTimeAgo:false}}</p>
           </div>
 
-          <p class="websiteLink"><a href="http://www.ufc.com/news/{{event.url_name}}" target="_blank">Full Article</a></p>
-
-
         </div>
+
+        <p class="websiteLink"><a href="http://www.ufc.com/event/{{event.url_name}}" target="_blank">Full Article</a></p>
+
       </div>
 
     </div>

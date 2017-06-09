@@ -19,8 +19,10 @@ export class HomeComponent implements OnInit {
   fotw: Array<any> = [];
   events: Array<any> = [];
   ladies: Array<any> = [];
+  mediaList: Array<any> = [];
   p: number = 1;
   p1: number = 1;
+  p2: number = 1;
 
   constructor(private _apiService: APIService, private titleService: Title, private router: Router) {
     this.titleService.setTitle( "UFC Champions - Home" );
@@ -47,12 +49,28 @@ export class HomeComponent implements OnInit {
         this.fotw = _.sample(data[2], 10);
         this.events = data[3];
         this.ladies = data[4];
+        this.mediaList = data[5].slice(0,20);
       },
       err => console.error(err),
       () => {
         console.log("Reddit Data", this.reddit);
       }
     );
+  }
+
+  getFighterDetail(fighterId) {
+    this.router.navigate(['./fighter/' + encodeURI(fighterId)]);
+  }
+
+  /*
+   Route to Event Details
+   */
+  getEventDetails(eventId) {
+    this.router.navigate(['./event/' + encodeURI(eventId)]);
+  }
+
+  getGirlDetail(girlId) {
+    this.router.navigate(['./octagon/ladies/' + encodeURI(girlId)]);
   }
 
 

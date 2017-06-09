@@ -31,6 +31,15 @@
   max-height:235px;
 }
 
+.mediaList .card .card-content {
+  min-height:450px;
+  max-height:450px;
+}
+
+.mediaList .card .card-content img{
+  max-height:170px;
+}
+
 .techList .card .card-content {
   min-height:455px;
   max-height:455px;
@@ -68,4 +77,24 @@
 
 .communityList i {
   color:red;
+}
+
+.moreMedia, h4 {
+  transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+}
+
+.moreMedia {
+  font-size:50% !important;
+}
+
+.moreMedia:hover, .card .card-content:hover h4 {
+  color: red;
+  cursor:pointer;
+}
+
+
+h1 {
+  margin-left: .1em;
 }

@@ -34,7 +34,7 @@
       [options]="{items: 6, dots: true, navigation: false, autoplay: true, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
       [items]="champions"
       [carouselClasses]="['owl-theme', 'row', 'sliding']">
-      <div class="item center-align" *ngFor="let fighter of champions; let i = index">
+      <div class="item center-align" *ngFor="let fighter of champions; let i = index" (click)="getFighterDetail(fighter.id)">
 
         <div class="card hoverable">
           <div class="card-content">
@@ -43,7 +43,7 @@
               <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
               <p>{{fighter.nickname || "No Nickname" }}</p>
               <p>
-                <img src="{{fighter.belt_thumbnail}}" />
+                <img class="zoom" src="{{fighter.belt_thumbnail}}" alt="{{fighter.first_name}}" />
               </p>
               <p>{{fighter.weight_class | symbolRemoval:'_'}}</p>
             </div>
@@ -58,41 +58,42 @@
   </div>
 </div>
 
-<div class="eventsBg">
+
+<div class="mediaBg">
   <div class="row">
 
     <div class="col s12">
-      <h1 class="float-left">Events</h1>
+      <h1 class="float-left">Media Headlines <small class="moreMedia" routerLink="/media">More</small></h1>
     </div>
 
   </div>
 
-
-  <div class="eventsList">
+  <div class="mediaList">
     <div class="row">
 
       <div class="col s12">
 
         <div class="col s12 center-align">
-          <pagination-controls id="events" (pageChange)="p1 = $event"></pagination-controls>
+          <pagination-controls id="media" (pageChange)="p2 = $event"></pagination-controls>
         </div>
 
-        <div class="col s12 m6 l6" *ngFor="let event of events  | paginate: { id: 'events', itemsPerPage: 4, currentPage: p1 }; let i = index">
-          <div class="article" (click)="getEventDetails(event.id)">
+        <div class="col s12 m6 l6" *ngFor="let media of mediaList  | paginate: { id: 'media', itemsPerPage: 2, currentPage: p2 }; let i = index">
+          <div class="article">
 
-            <div class="card hoverable">
+            <div class="card hoverable" (click)="getMediaDetails(media.id)">
               <div class="card-content">
 
                 <div class="center-align">
-                  <h4 class="truncate">{{event.base_title}}</h4>
-                  <p>{{event.arena}} {{event.location}}</p>
-                  <p>{{event.event_dategmt | date:'longDate' }}</p>
-                  <p>{{event.subtitle}}</p>
-                  <p>{{event.created | amTimeAgo:false}}</p>
+                  <h4 class="">{{media.title | truncate:50}}</h4>
+                  <p [innerHTML]="media.description | truncate:100"></p>
+                  <br />
+                  <p>
+                    <img class="zoom" src="{{media.thumbnail}}" alt="{{media.title}}" />
+                  </p>
+                  <p>{{media.created | amTimeAgo}}</p>
                 </div>
 
-                <p class="websiteLink"><a href="http://www.ufc.com/news/{{event.url_name}}" target="_blank">Full Article</a></p>
-
+                <p class="websiteLink"><a href="http://www.ufc.com/media/{{media.url_name}}" target="_blank">Full Article</a></p>
 
               </div>
             </div>
@@ -102,7 +103,7 @@
         </div>
 
         <div class="col s12 center-align">
-          <pagination-controls id="events" (pageChange)="p1 = $event"></pagination-controls>
+          <pagination-controls id="media" (pageChange)="p2 = $event"></pagination-controls>
         </div>
 
 
@@ -113,6 +114,7 @@
 
 
 </div>
+
 
 <div class="FightersBg">
 
@@ -138,12 +140,105 @@
               <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
               <p>{{fighter.nickname || "No Nickname"}}</p>
               <p>
-                <img src="{{fighter.profile_image}}" />
+                <img class="zoom" src="{{fighter.profile_image}}" alt="{{fighter.first_name}}" />
               </p>
               <p>{{fighter.weight_class | symbolRemoval:'_' || "No Weight Class Specified"}}</p>
             </div>
 
             <p class="websiteLink"><a href="{{fighter.link}}" target="_blank">Full Profile</a></p>
+
+          </div>
+        </div>
+
+      </div>
+    </owl-carousel>
+  </div>
+
+</div>
+
+<div class="eventsBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-left">Events</h1>
+    </div>
+
+  </div>
+
+
+  <div class="eventsList">
+    <div class="row">
+
+      <div class="col s12">
+
+        <div class="col s12 center-align">
+          <pagination-controls id="events" (pageChange)="p1 = $event"></pagination-controls>
+        </div>
+
+        <div class="col s12 m6 l6" *ngFor="let event of events  | paginate: { id: 'events', itemsPerPage: 4, currentPage: p1 }; let i = index">
+          <div class="article">
+
+            <div class="card hoverable">
+              <div class="card-content" (click)="getEventDetails(event.id)">
+
+                <div class="center-align">
+                  <h4 class="truncate">{{event.base_title}}</h4>
+                  <p>{{event.arena}} {{event.location}}</p>
+                  <p>{{event.event_dategmt | date:'longDate' }}</p>
+                  <p>{{event.subtitle}}</p>
+                  <p>{{event.created | amTimeAgo:false}}</p>
+                </div>
+
+              </div>
+
+              <p class="websiteLink"><a href="http://www.ufc.com/event/{{event.url_name}}" target="_blank">Full Article</a></p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col s12 center-align">
+          <pagination-controls id="events" (pageChange)="p1 = $event"></pagination-controls>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="techBg">
+  <div class="row">
+
+    <div class="col s12">
+      <h1 class="float-right">Our Technical Assistants</h1>
+    </div>
+
+  </div>
+
+  <div class="techList">
+    <owl-carousel
+      [options]="{items: 6, dots: true, navigation: true, autoplay: true, autoplayTimeout:7000, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
+      [items]="ladies"
+      [carouselClasses]="['owl-theme', 'row', 'sliding']">
+      <div class="item center-align" *ngFor="let girl of ladies; let i = index">
+
+        <div class="card hoverable" (click)="getGirlDetail(girl.id)">
+          <div class="card-content">
+
+            <div class="center-align">
+              <h4 class="truncate">{{girl.first_name}} {{girl.last_name}}</h4>
+              <p>{{girl.city_residing}} {{girl.country_residing}}</p>
+              <p [innerHTML]="girl.quote | truncate:40"></p>
+              <p>
+                <img class="zoom" src="{{girl.medium_profile_picture}}" alt="{{girl.first_name}}" />
+              </p>
+            </div>
 
           </div>
         </div>
@@ -193,42 +288,5 @@
     </div>
   </div>
 
-
-</div>
-
-<div class="techBg">
-  <div class="row">
-
-    <div class="col s12">
-      <h1 class="float-right">Our Technical Assistants</h1>
-    </div>
-
-  </div>
-
-  <div class="techList">
-    <owl-carousel
-      [options]="{items: 6, dots: true, navigation: true, autoplay: true, autoplayTimeout:7000, loop:true, responsive:{'1300':{items:4},'1000':{items:3},'500':{items:2},'0':{items:2}}}"
-      [items]="ladies"
-      [carouselClasses]="['owl-theme', 'row', 'sliding']">
-      <div class="item center-align" *ngFor="let girl of ladies; let i = index">
-
-        <div class="card hoverable" (click)="getGirlDetail(girl.id)">
-          <div class="card-content">
-
-            <div class="center-align">
-              <h4 class="truncate">{{girl.first_name}} {{girl.last_name}}</h4>
-              <p>{{girl.city_residing}} {{girl.country_residing}}</p>
-              <p [innerHTML]="girl.quote | truncate:40"></p>
-              <p>
-                <img src="{{girl.medium_profile_picture}}" alt="{{girl.first_name}}" />
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </owl-carousel>
-  </div>
 
 </div>

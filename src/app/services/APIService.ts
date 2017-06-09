@@ -56,17 +56,14 @@ export class APIService {
     return this.http.get(this.server + 'v3/iphone/octagon_girls/' + girlId).map((res:Response) => res.json());
   }
 
-  getRedditCommunity() {
-    return this.http.get('//www.reddit.com/r/ufc/new.json?limit=100').map((res:Response) => res.json());
-  }
-
   getHomePageData() {
     return Observable.forkJoin(
       this.http.get('//www.reddit.com/r/ufc/new.json?limit=100').map((res:Response) => res.json()),
       this.http.get(this.server + 'v3/iphone/fighters/title_holders').map((res:Response) => res.json()),
       this.http.get(this.server + 'v3/us/fighters').map((res:Response) => res.json()),
       this.http.get(this.server + 'v3/us/events').map((res:Response) => res.json()),
-      this.http.get(this.server + 'v3/iphone/octagon_girls').map((res:Response) => res.json())
+      this.http.get(this.server + 'v3/iphone/octagon_girls').map((res:Response) => res.json()),
+      this.http.get(this.server + 'v3/media').map((res:Response) => res.json())
     );
   }
 }
