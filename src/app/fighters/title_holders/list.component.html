@@ -31,7 +31,7 @@
         </mz-dropdown-item>
       </mz-dropdown>
 
-      <a mz-button id="dropTitle" href="#">{{selectedTitle || "Titles"}}</a>
+      <a mz-button id="dropTitle" href="#" class="red">{{selectedTitle || "Titles"}}</a>
     </div>
   </div>
 </div>
@@ -46,7 +46,7 @@
 
           <div class="center-align">
             <h4 class="truncate">{{fighter.first_name}} {{fighter.last_name}}</h4>
-            <p>{{fighter.nickname}}</p>
+            <p class="fighterNickname">{{fighter.nickname}}</p>
             <p>
               <img src="{{fighter.belt_thumbnail}}" />
             </p>

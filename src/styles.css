@@ -74,6 +74,19 @@ nav ul a {
   cursor:pointer;
 }
 
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 16px;
+  color: red !important;
+  display: block;
+  line-height: 22px;
+  padding: 14px 16px;
+}
+
+input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid red !important;
+  box-shadow: 0 1px 0 0 red !important;
+}
+
 .page-footer {
   background:url('assets/images/wall1.jpg') top center;
   background-size:100%;
@@ -103,6 +116,10 @@ nav ul a {
   -webkit-transform: scale(1.15);
   -moz-transform: scale(1.15);
   -o-transform: scale(1.15);
+}
+
+.fighterNickname {
+  height:10px;
 }
 
 .zoom {

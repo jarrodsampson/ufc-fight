@@ -35,7 +35,7 @@
           </mz-dropdown-item>
         </mz-dropdown>
 
-        <a mz-button id="dropTitle" href="#">{{selectedTitle || "Titles"}}</a>
+        <a mz-button id="dropTitle" href="#" class="red">{{selectedTitle || "Titles"}}</a>
       </div>
     </div>
 
@@ -60,12 +60,12 @@
           </mz-dropdown-item>
         </mz-dropdown>
 
-        <a mz-button id="dropStatus" href="#">{{selectedStatus || "Status"}}</a>
+        <a mz-button id="dropStatus" href="#" class="red">{{selectedStatus || "Status"}}</a>
       </div>
     </div>
 
     <div class="col s12 m2 l2 no-padding">
-      <a mz-button (click)="onSearchClear()">Clear</a>
+      <a mz-button (click)="onSearchClear()" class="red">Clear</a>
     </div>
 
   </div>
